@@ -6,11 +6,9 @@ const Sidebar = () => {
     const menuItems = [
         { path: '/dashboard', name: 'Tổng quan', icon: LayoutDashboard },
         { path: '/lesson', name: 'Bài học', icon: BookOpen },
-        { path: '/vocabulary', name: 'Từ vựng', icon: Library },
         { path: '/user', name: 'Học viên', icon: Users },
         { path: '/question', name: 'Câu hỏi', icon: HelpCircle },
-        { path: '/exam', name: 'Đề thi', icon: FileText },
-        { path: '/exam-results', name: 'Kết quả thi', icon: FileText }
+        { path: '/topic', name: 'Topic', icon: FileText }
     ];
 
     return (

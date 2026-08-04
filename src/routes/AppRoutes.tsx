@@ -1,41 +1,46 @@
+import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 // Import Layout và Pages
 import MainLayout from '../layouts/MainLayout';
-import {Dashboard} from '../pages/Dashboard';
-import Vocabulary from '../pages/Vocabulary';
+import { Dashboard } from '../pages/Dashboard';
 import Lesson from '../pages/Lesson';
 import User from '../pages/User';
 import Question from '../pages/Question';
-import Exam from '../pages/Exam';
-import ExamBuilder from '../pages/ExamBuilder';
-import ExamResults from '../pages/ExamResults';
+import { Login } from '../pages/Login';
+import Topic from '../pages/Topic';
+
+// Component bảo vệ: Nếu chưa có token thì đá về /login
+const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
+    const token = localStorage.getItem('admin_token');
+    if (!token) {
+        return <Navigate to="/login" replace />;
+    }
+    return children;
+};
 
 const AppRoutes = () => {
     return (
         <BrowserRouter>
             <Routes>
-                {/* 
-                  Không cần check token, không cần Login nữa. 
-                  Đi thẳng vào MainLayout luôn! 
-                */}
-                <Route path="/" element={<MainLayout />}>
-                    
-                    {/* Tự động chuyển hướng / sang /dashboard */}
+                {/* Trang Login độc lập */}
+                <Route path="/login" element={<Login />} />
+
+                {/* Các trang quản trị được bảo vệ bởi ProtectedRoute */}
+                <Route path="/" element={
+                    <ProtectedRoute>
+                        <MainLayout />
+                    </ProtectedRoute>
+                }>
                     <Route index element={<Navigate to="/dashboard" replace />} />
-                    
-                    {/* Các trang con ghép vào Outlet */}
                     <Route path="dashboard" element={<Dashboard />} />
-                    <Route path="vocabulary" element={<Vocabulary />} />
+
                     <Route path="lesson" element={<Lesson />} />
                     <Route path="user" element={<User />} />
                     <Route path="question" element={<Question />} />
-                    <Route path="exam" element={<Exam />} />
-                    <Route path="exam-builder" element={<ExamBuilder />} />
-                    <Route path="exam-results" element={<ExamResults />} />
+                    <Route path="topic" element={<Topic />} />
                 </Route>
 
-                {/* Gõ sai link thì về lại trang chủ */}
                 <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
         </BrowserRouter>
