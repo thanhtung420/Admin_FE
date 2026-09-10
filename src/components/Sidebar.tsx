@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { LayoutDashboard, BookOpen, Library, Users, Settings, LogOut, HelpCircle, FileText } from 'lucide-react';
+import { BookOpen, Users, Settings, LogOut, HelpCircle, FileText } from 'lucide-react';
 
 const Sidebar = () => {
     // Khai báo danh sách các menu để dễ dàng thêm/bớt sau này

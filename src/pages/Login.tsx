@@ -37,8 +37,8 @@ export const Login = () => {
           // 2. Tùy chọn: Lưu thêm thông tin user nếu cần
           if (data.username) localStorage.setItem("username", data.username);
 
-          // 3. Chuyển hướng sang trang Dashboard và cuộn lên đầu trang
-          navigate("/dashboard"); // Sửa lại đường dẫn này cho khớp với file AppRoutes.tsx của bạn
+          // 3. Chuyển hướng sang trang Bài học và cuộn lên đầu trang
+          navigate("/lesson");
           window.scrollTo({ top: 0, left: 0, behavior: "auto" });
         } else {
           setError("Lỗi hệ thống: Không nhận được Token từ máy chủ!");

@@ -1,9 +1,8 @@
-import React from 'react';
+import type { ReactNode } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 // Import Layout và Pages
 import MainLayout from '../layouts/MainLayout';
-import { Dashboard } from '../pages/Dashboard';
 import Lesson from '../pages/Lesson';
 import User from '../pages/User';
 import Question from '../pages/Question';
@@ -11,7 +10,7 @@ import { Login } from '../pages/Login';
 import Topic from '../pages/Topic';
 
 // Component bảo vệ: Nếu chưa có token thì đá về /login
-const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
+const ProtectedRoute = ({ children }: { children: ReactNode }) => {
     const token = localStorage.getItem('admin_token');
     if (!token) {
         return <Navigate to="/login" replace />;
@@ -32,8 +31,7 @@ const AppRoutes = () => {
                         <MainLayout />
                     </ProtectedRoute>
                 }>
-                    <Route index element={<Navigate to="/dashboard" replace />} />
-                    <Route path="dashboard" element={<Dashboard />} />
+                    <Route index element={<Navigate to="/lesson" replace />} />
 
                     <Route path="lesson" element={<Lesson />} />
                     <Route path="user" element={<User />} />

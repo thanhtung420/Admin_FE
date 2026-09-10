@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Plus, Search, Edit3, Trash2, Layers, Loader2, X } from "lucide-react";
+import { Plus, Search, Edit3, Trash2, Layers, Loader2 } from "lucide-react";
 
 interface TopicFormData {
   title: string;

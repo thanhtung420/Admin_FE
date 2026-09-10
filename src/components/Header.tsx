@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Search, Bell, Menu, LogOut, User } from 'lucide-react';
+import { useState, useEffect, useRef } from 'react';
+import { Search, Bell, Menu, LogOut } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
