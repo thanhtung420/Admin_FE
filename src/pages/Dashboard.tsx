@@ -131,7 +131,6 @@ export const Dashboard = () => {
   useEffect(() => {
     fetchDashboardData();
   }, [fetchDashboardData]);
-
   // Render cấu trúc Header và Toolbar giống hệt bản gốc[cite: 1]
   return (
     <div className="p-8 space-y-8 bg-[#fdfdff] min-h-screen font-sans text-slate-900" style={{ marginTop: '20px', borderRadius: '16px' }}>
@@ -175,7 +174,7 @@ export const Dashboard = () => {
         <StatCard label="Tổng Học viên" value={overview.totalUsers} icon={Users} color="text-blue-600" bg="bg-blue-50" />
         <StatCard label="Bài học (Lessons)" value={overview.totalLessons} icon={BookOpen} color="text-emerald-600" bg="bg-emerald-50" />
         <StatCard label="Ngân hàng Câu hỏi" value={overview.totalQuestions} icon={BrainCircuit} color="text-orange-600" bg="bg-orange-50" />
-        <StatCard label="Lượt hoàn thành Thi" value={overview.totalCompletedExams} icon={Target} color="text-violet-600" bg="bg-violet-50" />
+
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">

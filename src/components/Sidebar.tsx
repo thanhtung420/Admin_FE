@@ -4,7 +4,6 @@ import { LayoutDashboard, BookOpen, Library, Users, Settings, LogOut, HelpCircle
 const Sidebar = () => {
     // Khai báo danh sách các menu để dễ dàng thêm/bớt sau này
     const menuItems = [
-        { path: '/dashboard', name: 'Tổng quan', icon: LayoutDashboard },
         { path: '/lesson', name: 'Bài học', icon: BookOpen },
         { path: '/user', name: 'Học viên', icon: Users },
         { path: '/question', name: 'Câu hỏi', icon: HelpCircle },
