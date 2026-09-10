@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Plus, Search, Edit3, Trash2, Layers, Loader2 } from "lucide-react";
+import { API_BASE_URL } from "../utils/api";
 
 interface TopicFormData {
   title: string;
@@ -40,7 +41,7 @@ export const Topic = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:8080/api/admin/topics", {
+      const response = await fetch(`${API_BASE_URL}/api/admin/topics`, {
         method: "GET",
         headers: { "Authorization": `Bearer ${token}` }
       });
@@ -99,7 +100,7 @@ export const Topic = () => {
     }
 
     try {
-      const response = await fetch(`http://localhost:8080/api/admin/topics/${deletingTopic.id}`, {
+      const response = await fetch(`${API_BASE_URL}/api/admin/topics/${deletingTopic.id}`, {
         method: "DELETE",
         headers: { "Authorization": `Bearer ${token}` }
       });
@@ -139,8 +140,8 @@ export const Topic = () => {
     };
 
     const url = editingId 
-      ? `http://localhost:8080/api/admin/topics/${editingId}`
-      : "http://localhost:8080/api/admin/topics";
+      ? `${API_BASE_URL}/api/admin/topics/${editingId}`
+      : `${API_BASE_URL}/api/admin/topics`;
       
     const method = editingId ? "PUT" : "POST";
 

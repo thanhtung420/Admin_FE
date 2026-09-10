@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BookOpen, Plus, Search, Edit3, Trash2, Settings2, Loader2 } from 'lucide-react';
+import { API_BASE_URL } from '../utils/api';
 
 // 1. Định nghĩa khuôn mẫu cho configJson để Typescript không báo lỗi
 interface ConfigJson {
@@ -63,7 +64,7 @@ export const Lesson = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:8080/api/admin/lessons", {
+      const response = await fetch(`${API_BASE_URL}/api/admin/lessons`, {
         method: "GET",
         headers: {
           "Authorization": `Bearer ${token}`
@@ -157,7 +158,7 @@ export const Lesson = () => {
     }
 
     try {
-      const response = await fetch(`http://localhost:8080/api/admin/lessons/${deletingLesson.id}`, {
+      const response = await fetch(`${API_BASE_URL}/api/admin/lessons/${deletingLesson.id}`, {
         method: "DELETE",
         headers: { "Authorization": `Bearer ${token}` }
       });
@@ -204,8 +205,8 @@ export const Lesson = () => {
     };
 
     const url = editingId 
-        ? `http://localhost:8080/api/admin/lessons/${editingId}`
-        : "http://localhost:8080/api/admin/lessons";
+        ? `${API_BASE_URL}/api/admin/lessons/${editingId}`
+        : `${API_BASE_URL}/api/admin/lessons`;
       
     const method = editingId ? "PUT" : "POST";
 

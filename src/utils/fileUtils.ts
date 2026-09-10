@@ -1,4 +1,5 @@
 // src/utils/fileUtils.ts
+import { API_BASE_URL } from './api';
 
 export const getFullFileUrl = (path: string | null | undefined): string => {
   if (!path) return '';
@@ -7,7 +8,7 @@ export const getFullFileUrl = (path: string | null | undefined): string => {
   if (path.startsWith('http')) return path;
 
   // Nếu là đường dẫn tương đối, ghép với Base URL từ file .env
-  const baseUrl = (import.meta as any).VITE_API_BASE_URL || 'http://localhost:8080';
+  const baseUrl = API_BASE_URL;
   
   // Đảm bảo không bị dư dấu / ở giữa (VD: http://localhost:8080//uploads/...)
   const cleanBaseUrl = baseUrl.endsWith('/') ? baseUrl.slice(0, -1) : baseUrl;

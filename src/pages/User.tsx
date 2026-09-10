@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Search, Mail, X, UserCheck, Flame, Coins, Heart, Award, ShieldPlus, Edit3, Trash2, Loader2 } from 'lucide-react';
+import { API_BASE_URL } from '../utils/api';
 
 export const User = () => {
   const [users, setUsers] = useState<any[]>([]);
@@ -30,7 +31,7 @@ export const User = () => {
     if (!token) { setIsFetching(false); return; }
 
     try {
-      const response = await fetch("http://localhost:8080/api/admin/users", {
+      const response = await fetch(`${API_BASE_URL}/api/admin/users`, {
         method: "GET",
         headers: { "Authorization": `Bearer ${token}` }
       });
@@ -58,7 +59,7 @@ export const User = () => {
 
     const token = localStorage.getItem("token");
     try {
-      const response = await fetch("http://localhost:8080/api/admin/users/create-admin", {
+      const response = await fetch(`${API_BASE_URL}/api/admin/users/create-admin`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -96,7 +97,7 @@ export const User = () => {
     const token = localStorage.getItem("token");
 
     try {
-      const response = await fetch(`http://localhost:8080/api/admin/users/${editingUser.id}`, {
+      const response = await fetch(`${API_BASE_URL}/api/admin/users/${editingUser.id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -125,7 +126,7 @@ export const User = () => {
     const token = localStorage.getItem("token");
 
     try {
-      const response = await fetch(`http://localhost:8080/api/admin/users/${deletingUser.id}`, {
+      const response = await fetch(`${API_BASE_URL}/api/admin/users/${deletingUser.id}`, {
         method: "DELETE",
         headers: { "Authorization": `Bearer ${token}` }
       });

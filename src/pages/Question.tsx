@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { HelpCircle, Plus, Search, Edit3, Trash2, Settings2, Loader2, CheckCircle2, Image as ImageIcon, Volume2, PlusCircle, X, Upload } from 'lucide-react';
 import * as wanakana from 'wanakana';
+import { API_BASE_URL } from '../utils/api';
 
 // --- HÀM XỬ LÝ URL ---
 const getFullFileUrl = (path: string | null | undefined): string => {
   if (!path) return '';
   if (path.startsWith('http')) return path;
   
-  const baseUrl = (import.meta as any).env.VITE_API_BASE_URL || 'http://localhost:8080';
+  const baseUrl = API_BASE_URL;
   const cleanBaseUrl = baseUrl.endsWith('/') ? baseUrl.slice(0, -1) : baseUrl;
   const cleanPath = path.startsWith('/') ? path : `/${path}`;
   
@@ -78,7 +79,7 @@ export const Question = () => {
     if (!token) { setIsFetching(false); return; }
 
     try {
-      const response = await fetch("http://localhost:8080/api/admin/questions", {
+      const response = await fetch(`${API_BASE_URL}/api/admin/questions`, {
         method: "GET",
         headers: { "Authorization": `Bearer ${token}` }
       });
@@ -174,7 +175,7 @@ export const Question = () => {
     }
 
     try {
-      const response = await fetch(`http://localhost:8080/api/admin/questions/${deletingQuestion.id}`, {
+      const response = await fetch(`${API_BASE_URL}/api/admin/questions/${deletingQuestion.id}`, {
         method: "DELETE",
         headers: { "Authorization": `Bearer ${token}` }
       });
@@ -203,8 +204,8 @@ export const Question = () => {
     uploadData.append("file", file);
 
     const endpoint = type === 'image' 
-      ? "http://localhost:8080/api/v1/uploads/images" 
-      : "http://localhost:8080/api/v1/uploads/audio";
+      ? `${API_BASE_URL}/api/v1/uploads/images`
+      : `${API_BASE_URL}/api/v1/uploads/audio`;
 
     try {
       const response = await fetch(endpoint, {
@@ -333,8 +334,8 @@ export const Question = () => {
       };
 
       const url = editingId 
-        ? `http://localhost:8080/api/admin/questions/${editingId}`
-        : "http://localhost:8080/api/admin/questions";
+        ? `${API_BASE_URL}/api/admin/questions/${editingId}`
+        : `${API_BASE_URL}/api/admin/questions`;
       
       const method = editingId ? "PUT" : "POST";
 

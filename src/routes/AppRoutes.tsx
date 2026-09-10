@@ -11,7 +11,7 @@ import Topic from '../pages/Topic';
 
 // Component bảo vệ: Nếu chưa có token thì đá về /login
 const ProtectedRoute = ({ children }: { children: ReactNode }) => {
-    const token = localStorage.getItem('admin_token');
+    const token = localStorage.getItem('token');
     if (!token) {
         return <Navigate to="/login" replace />;
     }
